@@ -1,0 +1,59 @@
+Skip to content
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@TheHelmsman 
+1
+13csr/OpenStreetMap-ReactJS
+ Code Issues 0 Pull requests 0 Projects 0 Wiki Security Insights
+OpenStreetMap-ReactJS/openstreetmap-reactjs/src/App.css
+@csr csr added project files
+decb933 on 9 Sep 2018
+43 lines (35 sloc)  501 Bytes
+  
+.App {
+  text-align: center;
+}
+
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.navbar {
+  position: absolute;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: black;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
