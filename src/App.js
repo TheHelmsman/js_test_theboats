@@ -1,7 +1,8 @@
-import React from "react";
+import React, {Component, Fragment} from "react";
+import LoginForm from './components/LoginForm';
 import CustomMap from "./components/CustomMap";
 
-export default class App extends React.Component {
+export default class App extends Component {
 
   constructor(props) {
     super(props);
@@ -41,9 +42,8 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log('---componentDidMount');
+    console.log('---App, componentDidMount');
     console.log(this.state);
-
     //  get  user location
     this.getUserLocation();
   }
@@ -52,7 +52,10 @@ export default class App extends React.Component {
     const { lat, lng, markers } = this.state;
     return (
       <div>
-        {/* <NavBar /> */}
+        <Fragment>
+          <h1>Redux Form</h1>
+          <LoginForm />
+        </Fragment>
         <CustomMap center={[lat, lng]} markers={markers} />
       </div>
     );

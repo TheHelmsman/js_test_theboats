@@ -33,10 +33,6 @@ export default class CustomMap extends Component {
     markers: []
   };
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
 
     const { center, markers } = this.props;
