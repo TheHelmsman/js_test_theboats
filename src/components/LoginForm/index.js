@@ -19,6 +19,9 @@ class LoginForm extends Component {
 
     const localFlag = localStorage.getItem('rememberMe') === 'true';
     const localUser = localFlag ? localStorage.getItem('user') : '';
+
+    this.props.initialize({ email: localFlag ? localUser : '' });
+
     this.setState({ user: localUser }, function () {
       console.log(this.state.user);
     });
@@ -31,9 +34,12 @@ class LoginForm extends Component {
   }
 
   submit = (e) => {
+
     e.preventDefault();
+
     const data = new FormData(e.target);
     this.setState({ user: data.get('email') });
+
     localStorage.setItem('rememberMe', this.state.rememberMe);
     localStorage.setItem('user', this.state.rememberMe ? data.get('email') : '');
 
@@ -49,9 +55,16 @@ class LoginForm extends Component {
     console.log([input.name]+' '+value);
   };
  
+  componentWillMount () {
+    this.props.initialize({ email: 'your name' });
+  }
+
   render () {
+    console.log('---');
+    console.log(this.props);
+    // const {initialValues} = this.props;
     return (
-      <form onSubmit={this.submit}>
+      <form onSubmit={this.submit} >
         <label>
           User: 
           <Field
@@ -59,7 +72,8 @@ class LoginForm extends Component {
             component={myInput}
             validate={[requiredInput, correctInput]}
             type="text"
-            placeholder={this.state.user}
+            defaultValue={this.state.user}
+            placeholder="email"
           />
         </label>
         <label>

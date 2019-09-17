@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react';
 
 export const myInput = (props) => {
-  const {input, type, placeholder, meta}=props;
+  const {input, type, placeholder, meta }=props;
   return (
     <Fragment>
       <input {...input} type={type} placeholder={placeholder} />
