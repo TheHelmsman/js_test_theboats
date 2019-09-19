@@ -4,7 +4,7 @@ import "./index.css";
 import "./App.css";
 import registerServiceWorker from "./registerServiceWorker";
 import App from "./App";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 
 import {Provider} from 'react-redux';
 import {createStore, combineReducers} from 'redux';

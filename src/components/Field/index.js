@@ -4,7 +4,7 @@ export const myInput = (props) => {
   const {input, type, placeholder, meta }=props;
   return (
     <Fragment>
-      <input {...input} type={type} placeholder={placeholder} />
+      <input className="TextInput" {...input} type={type} placeholder={placeholder} />
       { meta.error &&
         meta.touched &&
         <div>

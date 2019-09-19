@@ -53,7 +53,6 @@ export default class App extends Component {
     return (
       <div>
         <Fragment>
-          <h1>Redux Form</h1>
           <LoginForm />
         </Fragment>
         <CustomMap center={[lat, lng]} markers={markers} />
