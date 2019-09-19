@@ -40,7 +40,6 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    //  get  user location
     this.getUserLocation();
   }
 
@@ -57,4 +56,3 @@ export default class App extends Component {
   }
 }
 
-// export default withNamespaces()(App);

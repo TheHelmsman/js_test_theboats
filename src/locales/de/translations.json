@@ -1,15 +1,15 @@
 {
-  "marker": "User location",
-  "geoDiscovery": "Error: Can't get user location. Please enable geo discovery in your browser",
-  "geoSupport": "Error: Browser doesn't support Geolocation",
-  "loginTitle": "Sign in!",
+  "marker": "Benutzerstandort",
+  "geoDiscovery": "Fehler: Benutzer kann nicht gefunden werden. Bitte aktivieren Sie die Geoerkennung in Ihrem Browser",
+  "geoSupport": "Fehler: Browser unterstützt Geolocation nicht",
+  "loginTitle": "Einloggen",
   "loginEmail": "Email:",
-  "loginCheckbox": "Remember me",
-  "loginPassword": "Password:",
-  "loginButton": "Sign In",
-  "loginPasswordRecovery": "Forgot password?",
-  "recoverTitle": "Recover password",
+  "loginCheckbox": "Behalte mich in Erinnerung",
+  "loginPassword": "Passwort:",
+  "loginButton": "Einloggen",
+  "loginPasswordRecovery": "Passwort vergessen?",
+  "recoverTitle": "Passwort wiederherstellen",
   "recoverEmail": "Email:",
-  "recoverText": "Enter your email and click sumbit. Password reset link will be send to your email.",
-  "recoverPassword": "Recover password"
+  "recoverText": "Geben Sie Ihre E-Mail-Adresse ein und klicken Sie auf Sumbit. Der Link zum Zurücksetzen des Passworts wird an Ihre E-Mail-Adresse gesendet.",
+  "recoverPassword": "Passwort wiederherstellen"
 }

@@ -2,7 +2,7 @@
   "marker": "User location",
   "geoDiscovery": "Error: Can't get user location. Please enable geo discovery in your browser",
   "geoSupport": "Error: Browser doesn't support Geolocation",
-  "loginTitle": "Sign in!",
+  "loginTitle": "Sign in",
   "loginEmail": "Email:",
   "loginCheckbox": "Remember me",
   "loginPassword": "Password:",
