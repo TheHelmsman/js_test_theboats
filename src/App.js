@@ -15,7 +15,7 @@ export default class App extends Component {
     };
   }
 
-  getUserLocation() {
+  getUserLocation = () => {
     var that = this;
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
@@ -39,7 +39,7 @@ export default class App extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     this.getUserLocation();
   }
 

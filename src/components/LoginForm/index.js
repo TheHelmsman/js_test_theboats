@@ -54,7 +54,7 @@ class LoginForm extends Component {
     this.setState({ [input.name]: value });
   };
  
-  componentWillMount () {
+  componentWillMount = () => {
     this.props.initialize({ email: 'your name' });
   }
 
