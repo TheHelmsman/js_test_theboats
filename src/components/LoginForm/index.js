@@ -2,20 +2,14 @@ import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
 import {myInput} from '../Field';
 import {requiredInput, correctInput} from '../../validation';
-
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
-import Paper from '@material-ui/core/Paper';
-// import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
 import {useStyles, Box, Label, FormTitle, RecoverText} from './styled';
+import i18n from "../../i18n";
 
 class LoginForm extends Component {
 
@@ -30,9 +24,6 @@ class LoginForm extends Component {
   }
 
   componentDidMount = () => {
-    console.log('---componentDidMount');
-    console.log(this.state);
-
     const localFlag = localStorage.getItem('rememberMe') === 'true';
     const localUser = localFlag ? localStorage.getItem('user') : '';
 
@@ -44,9 +35,6 @@ class LoginForm extends Component {
     this.setState({ rememberMe: localFlag }, function () {
       console.log(this.state.rememberMe);
     });
-    console.log('LoginForm - componentDidMount, rememberMe: '+localFlag+' user: '+localUser);
-    console.log('---state');
-    console.log(this.state);
   }
 
   submit = (e) => {
@@ -58,17 +46,12 @@ class LoginForm extends Component {
 
     localStorage.setItem('rememberMe', this.state.rememberMe);
     localStorage.setItem('user', this.state.rememberMe ? data.get('email') : '');
-
-    const rememberMe = localStorage.getItem('rememberMe') === 'true';
-    const user = rememberMe ? localStorage.getItem('user') : '';
-    console.log('check save, rememeberMe: '+rememberMe+' user: '+user);
   }
 
   handleChange = (event) => {
     const input = event.target;
     const value = input.type === 'checkbox' ? input.checked : input.value;
     this.setState({ [input.name]: value });
-    console.log([input.name]+' '+value);
   };
  
   componentWillMount () {
@@ -88,8 +71,6 @@ class LoginForm extends Component {
   }
 
   render () {
-    console.log('---');
-    console.log(this.props);
     const {showLogin, showRecover} = this.state;
     return (
         <div className="materialContainer">
@@ -105,12 +86,12 @@ class LoginForm extends Component {
             </Grid>
             <Grid container>
               <Grid item xs>
-                <FormTitle>Sign in</FormTitle>
+                <FormTitle>{i18n.t('loginTitle')}</FormTitle>
               </Grid>
             </Grid>
             <form className={useStyles.form} onSubmit={this.submit} >
               <Label>
-                Email: 
+                {i18n.t('loginEmail')}
                 <Field
                   name="email"
                   component={myInput}
@@ -121,10 +102,10 @@ class LoginForm extends Component {
                 />
               </Label>
               <Label>
-                <input name="rememberMe" checked={this.state.rememberMe} onChange={this.handleChange} type="checkbox"/> Remember me
+                <input name="rememberMe" checked={this.state.rememberMe} onChange={this.handleChange} type="checkbox"/> {i18n.t('loginCheckbox')}
               </Label>
               <Label>
-                Password:
+                {i18n.t('loginPassword')}
                 <Field
                   name="password"
                   component={myInput}
@@ -140,12 +121,12 @@ class LoginForm extends Component {
                 color="primary"
                 className={useStyles.submit}
               >
-                Sign In
+                {i18n.t('loginButton')}
               </Button>
               <Grid container>
                 <Grid item xs>
                   <Link href="#" className="LoginFormLink" onClick={this.forgotPswdHandler}>
-                    Forgot password?
+                  {i18n.t('loginPasswordRecovery')}
                   </Link>
                 </Grid>
             </Grid>
@@ -163,12 +144,12 @@ class LoginForm extends Component {
           </Grid>
           <Grid container>
             <Grid item xs>
-              <FormTitle>Recover password</FormTitle>
+              <FormTitle>{i18n.t('recoverTitle')}</FormTitle>
             </Grid>
           </Grid>
           <form className={useStyles.form} onSubmit={this.recover} >
             <Label>
-              Email: 
+              {i18n.t('recoverEmail')} 
               <Field
                 name="email"
                 component={myInput}
@@ -178,7 +159,7 @@ class LoginForm extends Component {
                 placeholder="email"
               />
             </Label>
-            <RecoverText>Enter your email and click sumbit. Password reset link will be send to your email.</RecoverText>
+            <RecoverText>{i18n.t('recoverText')}</RecoverText>
             <Button
               type="submit"
               fullWidth
@@ -186,7 +167,7 @@ class LoginForm extends Component {
               color="primary"
               className={useStyles.submit}
             >
-              Recover password
+            {i18n.t('recoverPassword')}
             </Button>
           </form>
         </Box>

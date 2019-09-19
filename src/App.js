@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from "react";
 import LoginForm from './components/LoginForm';
 import CustomMap from "./components/CustomMap";
+import i18n from "./i18n";
 
 export default class App extends Component {
 
@@ -18,7 +19,6 @@ export default class App extends Component {
     var that = this;
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
-        console.log('lat: '+position.coords.latitude+' long: '+position.coords.longitude);
         that.setState({
           lat: position.coords.latitude,
           lng: position.coords.longitude,
@@ -27,23 +27,19 @@ export default class App extends Component {
             {
               key: "marker1",
               position: [position.coords.latitude, position.coords.longitude],
-              children: "User location"
+              children: i18n.t('marker')
             }
           ]
         })
-        console.log('---');
-        console.log(that.state);
       }, function() {
-        console.log('error');
+        console.log(i18n.t('geoDiscovery'));
       });
     } else {
-      console.log('error: Browser doesn\'t support Geolocation');
+      console.log(i18n.t('geoSupport'));
     }
   }
 
   componentDidMount() {
-    console.log('---App, componentDidMount');
-    console.log(this.state);
     //  get  user location
     this.getUserLocation();
   }
@@ -60,3 +56,5 @@ export default class App extends Component {
     );
   }
 }
+
+// export default withNamespaces()(App);

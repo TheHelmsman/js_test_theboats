@@ -19,7 +19,12 @@
     "reactstrap": "^6.4.0",
     "redux": "^4.0.4",
     "redux-form": "^8.2.6",
-    "styled-components": "^4.3.2"
+    "styled-components": "^4.3.2",
+    "i18next": "13.1.5",
+    "i18next-browser-languagedetector": "2.2.4",
+    "i18next-locize-backend": "^1.7.1",
+    "i18next-xhr-backend": "1.5.1",
+    "react-i18next": "9.0.6"
   },
   "scripts": {
     "start": "react-scripts start",
