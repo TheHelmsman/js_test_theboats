@@ -15,7 +15,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import {useStyles, Box, Label, FormTitle} from './styled';
+import {useStyles, Box, Label, FormTitle, RecoverText} from './styled';
 
 class LoginForm extends Component {
 
@@ -23,11 +23,13 @@ class LoginForm extends Component {
     super(props);
     this.state = {
       user: '',
-      rememberMe: false
+      rememberMe: false,
+      showLogin: true,
+      showRecover: false
     };
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     console.log('---componentDidMount');
     console.log(this.state);
 
@@ -73,13 +75,26 @@ class LoginForm extends Component {
     this.props.initialize({ email: 'your name' });
   }
 
+  forgotPswdHandler = (e) => {
+    e.preventDefault();
+    this.setState({ showLogin: false });
+    this.setState({ showRecover: true });
+  }
+
+  recover = (e) => {
+    e.preventDefault();
+    this.setState({ showLogin: true });
+    this.setState({ showRecover: false });
+  }
+
   render () {
     console.log('---');
     console.log(this.props);
-    // const {initialValues} = this.props;
+    const {showLogin, showRecover} = this.state;
     return (
         <div className="materialContainer">
           <CssBaseline />
+          { showLogin ? 
           <Box>
             <Grid container>
               <Grid item xs>
@@ -95,7 +110,7 @@ class LoginForm extends Component {
             </Grid>
             <form className={useStyles.form} onSubmit={this.submit} >
               <Label>
-                User: 
+                Email: 
                 <Field
                   name="email"
                   component={myInput}
@@ -129,13 +144,53 @@ class LoginForm extends Component {
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link href="#" className="LoginFormLink">
+                  <Link href="#" className="LoginFormLink" onClick={this.forgotPswdHandler}>
                     Forgot password?
                   </Link>
                 </Grid>
             </Grid>
           </form>
         </Box>
+          : null }
+        { showRecover ?
+        <Box>
+          <Grid container>
+            <Grid item xs>
+              <Avatar className="Ava">
+                <LockOutlinedIcon />
+              </Avatar>
+            </Grid>
+          </Grid>
+          <Grid container>
+            <Grid item xs>
+              <FormTitle>Recover password</FormTitle>
+            </Grid>
+          </Grid>
+          <form className={useStyles.form} onSubmit={this.recover} >
+            <Label>
+              Email: 
+              <Field
+                name="email"
+                component={myInput}
+                validate={[requiredInput, correctInput]}
+                type="text"
+                defaultValue={this.state.user}
+                placeholder="email"
+              />
+            </Label>
+            <RecoverText>Enter your email and click sumbit. Password reset link will be send to your email.</RecoverText>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={useStyles.submit}
+            >
+              Recover password
+            </Button>
+          </form>
+        </Box>
+         : null }
       </div>
     );
   }

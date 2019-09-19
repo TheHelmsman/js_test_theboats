@@ -28,6 +28,15 @@ export const FormTitle = styled.div`
   line-height: 1.33;
   letter-spacing: 0em;
 `;
+export const RecoverText = styled.div`
+  width:100%;
+  text-align: left;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: block;
+`;
 export const useStyles = makeStyles(theme => ({
   root: {
     height: '100vh',
