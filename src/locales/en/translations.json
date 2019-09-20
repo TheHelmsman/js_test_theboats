@@ -11,5 +11,7 @@
   "recoverTitle": "Recover password",
   "recoverEmail": "Email:",
   "recoverText": "Enter your email and click sumbit. Password reset link will be send to your email.",
-  "recoverPassword": "Recover password"
+  "recoverPassword": "Recover password",
+  "errRequiredInput": "Input required",
+  "errWrongEmailFormat": "Invalid email format"
 }

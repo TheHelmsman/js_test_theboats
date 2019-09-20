@@ -11,5 +11,7 @@
   "recoverTitle": "Passwort wiederherstellen",
   "recoverEmail": "Email:",
   "recoverText": "Geben Sie Ihre E-Mail-Adresse ein und klicken Sie auf Sumbit. Der Link zum Zurücksetzen des Passworts wird an Ihre E-Mail-Adresse gesendet.",
-  "recoverPassword": "Passwort wiederherstellen"
+  "recoverPassword": "Passwort wiederherstellen",
+  "errRequiredInput": "Eingabe erforderlich",
+  "errWrongEmailFormat": "Ungültiges E-Mail-Format"
 }

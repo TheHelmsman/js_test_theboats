@@ -11,5 +11,7 @@
   "recoverTitle": "Восстановить пароль",
   "recoverEmail": "е-мейл:",
   "recoverText": "Введите свой адрес электронной почты и нажмите sumbit. Ссылка для сброса пароля будет отправлена на ваш адрес электронной почты.",
-  "recoverPassword": "Восстановить пароль"
+  "recoverPassword": "Восстановить пароль",
+  "errRequiredInput": "Требуется ввод",
+  "errWrongEmailFormat": "Неправильный формат email"
 }
