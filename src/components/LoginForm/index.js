@@ -29,12 +29,8 @@ class LoginForm extends Component {
 
     this.props.initialize({ email: localFlag ? localUser : '' });
 
-    this.setState({ user: localUser }, function () {
-      console.log(this.state.user);
-    });
-    this.setState({ rememberMe: localFlag }, function () {
-      console.log(this.state.rememberMe);
-    });
+    this.setState({ user: localUser });
+    this.setState({ rememberMe: localFlag });
   }
 
   submit = (e) => {
