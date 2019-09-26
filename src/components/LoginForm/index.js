@@ -31,6 +31,8 @@ class LoginForm extends Component {
 
     this.setState({ user: localUser });
     this.setState({ rememberMe: localFlag });
+    
+    this.props.initialize({ email: 'your name' });
   }
 
   submit = (e) => {
@@ -50,10 +52,6 @@ class LoginForm extends Component {
     this.setState({ [input.name]: value });
   };
  
-  componentWillMount = () => {
-    this.props.initialize({ email: 'your name' });
-  }
-
   forgotPswdHandler = (e) => {
     e.preventDefault();
     this.setState({ showLogin: false });

@@ -39,7 +39,7 @@ export default class CustomMap extends Component {
     };
   }
 
-  componentWillReceiveProps({ viewport }) {
+  getDerivedStateFrom({ viewport }) {
     // When the provided viewport changes, apply it
     if (viewport !== this.props.viewport) {
       this.setState({ viewport });
