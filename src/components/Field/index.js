@@ -1,3 +1,5 @@
+
+/* eslint-disable react/prop-types */
 import React, {Fragment} from 'react';
 
 export const myInput = (props) => {

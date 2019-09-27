@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
 import {myInput} from '../Field';
@@ -11,7 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import {useStyles, Box, Label, FormTitle, RecoverText} from './styled';
 import i18n from "../../i18n";
 
-class LoginForm extends Component {
+let LoginFrm = class LoginForm extends Component {
 
   constructor(props) {
     super(props);
@@ -171,8 +172,8 @@ class LoginForm extends Component {
   }
 }
 
-LoginForm = reduxForm ({
+const LoginForm = reduxForm ({
   form: 'login',
-}) (LoginForm);
+}) (LoginFrm);
 
 export default LoginForm;

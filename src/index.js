@@ -7,8 +7,8 @@ import App from './App';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './i18n';
 import { Provider } from 'react-redux';
-import { createStore, combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form';
+// import { createStore, combineReducers } from 'redux';
+// import { reducer as formReducer } from 'redux-form';
 import history from './history';
 import { Router } from 'react-router-dom';
 
