@@ -1,78 +1,79 @@
-import React, { Component, Fragment } from 'react';
-import LoginForm from './components/LoginForm';
-import CustomMap from './components/CustomMap';
-import i18n from './i18n';
+import React, { Component, Fragment } from 'react'
+import LoginForm from './components/LoginForm'
+import CustomMap from './components/CustomMap'
+import i18n from './i18n'
 
-import { connect } from 'react-redux';
-import { updatePosition } from './actions';
+import { connect } from 'react-redux'
+import { updatePosition } from './actions'
+import PropTypes from 'prop-types'
 
-function mapDispatchToProps(dispatch) {
-  return {
-    updatePosition: position => dispatch(updatePosition(position))
-  };
+const mapDispatchToProps = dispatch => {
+	return {
+		updatePosition: position => dispatch(updatePosition(position)),
+	}
+}
+
+const mapStateToProps = store => {
+	return {
+		lat: store.lat,
+		lng: store.lng,
+		markers: store.markers,
+	}
 }
 
 class myApp extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      lat: 0,
-      lng: 0,
-      zoom: 13,
-      markers: []
-    };
-  }
+	getUserLocation = () => {
+		var that = this
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(
+				function(position) {
+					that.props.updatePosition({
+						lat: position.coords.latitude,
+						lng: position.coords.longitude,
+						markers: [
+							{
+								key: 'marker1',
+								position: [position.coords.latitude, position.coords.longitude],
+								children: i18n.t('marker'),
+							},
+						],
+					})
+				},
+				function() {
+					console.log(i18n.t('geoDiscovery'))
+				}
+			)
+		} else {
+			console.log(i18n.t('geoSupport'))
+		}
+	}
 
-  getUserLocation = () => {
-    var that = this;
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        function(position) {
-          that.props.updatePosition({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          });
-          that.setState({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-            zoom: 13,
-            markers: [
-              {
-                key: 'marker1',
-                position: [position.coords.latitude, position.coords.longitude],
-                children: i18n.t('marker')
-              }
-            ]
-          });
-        },
-        function() {
-          console.log(i18n.t('geoDiscovery'));
-        }
-      );
-    } else {
-      console.log(i18n.t('geoSupport'));
-    }
-  };
+	componentDidMount = () => {
+		this.getUserLocation()
+	}
 
-  componentDidMount = () => {
-    this.getUserLocation();
-  };
+	render() {
+		const { lat, lng, markers } = this.props
+		return (
+			<div>
+				<Fragment>
+					<LoginForm />
+				</Fragment>
+				<CustomMap center={[lat, lng]} markers={markers} />
+			</div>
+		)
+	}
+}
 
-  render() {
-    const { lat, lng, markers } = this.state;
-    return (
-      <div>
-        <Fragment>
-          <LoginForm />
-        </Fragment>
-        <CustomMap center={[lat, lng]} markers={markers} />
-      </div>
-    );
-  }
+myApp.propTypes = {
+	lat: PropTypes.number,
+	lng: PropTypes.number,
+	markers: PropTypes.array,
 }
 
 const App = connect(
-  null,
-  mapDispatchToProps
-)(myApp);
-export default App;
+	mapStateToProps,
+	mapDispatchToProps
+)(myApp)
+
+export default App
