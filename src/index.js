@@ -7,17 +7,12 @@ import App from './App'
 import { I18nextProvider } from 'react-i18next'
 import i18n from './i18n'
 import { Provider } from 'react-redux'
-// import { createStore, combineReducers } from 'redux';
-// import { reducer as formReducer } from 'redux-form';
 import history from './history'
 import { Router } from 'react-router-dom'
 
-import { store } from './store/index'
+import { store } from './store/configureStore'
 import { updatePosition } from './actions/index'
 
-// const reducers = {form: formReducer};
-// const reducer = combineReducers(reducers, storeOrigin);
-// let store = createStore(reducer);
 window.store = store
 store.updatePosition = updatePosition
 
