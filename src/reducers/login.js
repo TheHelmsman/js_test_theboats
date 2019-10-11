@@ -1,4 +1,5 @@
 import { UPDATE_USER } from '../constants/action-types'
+
 const initialState = {
 	user: '',
 	rememberMe: false,
