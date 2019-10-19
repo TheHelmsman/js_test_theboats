@@ -9,45 +9,18 @@ import Grid from '@material-ui/core/Grid'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import { useStyles, Box, Label, FormTitle, RecoverText } from './styled'
 import i18n from '../../i18n'
+import { connect } from 'react-redux'
+import { switchForm } from '../../actions'
 
-let RecoverInput = class Recover extends Component {
-	componentDidMount = () => {
-		// const localFlag = localStorage.getItem('rememberMe') === 'true';
-		// const localUser = localFlag ? localStorage.getItem('user') : '';
-		// this.props.initialize({ email: localFlag ? localUser : '' });
-		// this.setState({ user: localUser });
-		// this.setState({ rememberMe: localFlag });
-		// this.props.initialize({ email: 'your name' });
-	}
-
-	submit = e => {
-		// e.preventDefault();
-		// const data = new FormData(e.target);
-		// this.setState({ user: data.get('email') });
-		// localStorage.setItem('rememberMe', this.state.rememberMe);
-		// localStorage.setItem('user', this.state.rememberMe ? data.get('email') : '');
-	}
-
-	handleChange = event => {
-		// const input = event.target;
-		// const value = input.type === 'checkbox' ? input.checked : input.value;
-		// this.setState({ [input.name]: value });
-	}
-
-	forgotPswdHandler = e => {
-		// e.preventDefault();
-		// this.setState({ showLogin: false });
-		// this.setState({ showRecover: true });
-	}
-
+let RecoverInputs = class Recover extends Component {
 	recover = e => {
-		// e.preventDefault();
-		// this.setState({ showLogin: true });
-		// this.setState({ showRecover: false });
+		const { switchForm } = this.props
+		e.preventDefault()
+		switchForm({ showLogin: true, showRecover: false })
 	}
 
 	render() {
-		// const {showLogin, showRecover} = this.state;
+		const { email } = this.props
 		return (
 			<Box>
 				<Grid container>
@@ -70,8 +43,8 @@ let RecoverInput = class Recover extends Component {
 							component={myInput}
 							validate={[requiredInput, correctInput]}
 							type="text"
-							defaultValue={this.state.user}
-							placeholder="email"
+							defaultValue=""
+							placeholder={email}
 						/>
 					</Label>
 					<RecoverText>{i18n.t('recoverText')}</RecoverText>
@@ -91,7 +64,22 @@ let RecoverInput = class Recover extends Component {
 }
 
 const Recover = reduxForm({
-	form: 'login',
-})(RecoverInput)
+	form: 'recover',
+})(RecoverInputs)
 
-export default Recover
+const mapStateToProps = store => {
+	return {
+		email: store.login.email,
+	}
+}
+
+const mapDispatchToProps = dispatch => {
+	return {
+		switchForm: data => dispatch(switchForm(data)),
+	}
+}
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Recover)
