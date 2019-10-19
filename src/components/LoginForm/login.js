@@ -10,45 +10,42 @@ import Grid from '@material-ui/core/Grid'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import { useStyles, Box, Label, FormTitle } from './styled'
 import i18n from '../../i18n'
+import { connect } from 'react-redux'
+import { updateUser, remeberUser, switchForm } from '../../actions'
 
 let LoginInputs = class Login extends Component {
 	componentDidMount = () => {
-		// const localFlag = localStorage.getItem('rememberMe') === 'true';
-		// const localUser = localFlag ? localStorage.getItem('user') : '';
-		// this.props.initialize({ email: localFlag ? localUser : '' });
-		// this.setState({ user: localUser });
-		// this.setState({ rememberMe: localFlag });
-		// this.props.initialize({ email: 'your name' });
+		const { updateUser } = this.props
+		const localFlag = localStorage.getItem('rememberMe') === 'true'
+		const localUser = localFlag ? localStorage.getItem('user') : ''
+		updateUser({ email: localUser })
 	}
 
 	submit = e => {
-		// e.preventDefault();
-		// const data = new FormData(e.target);
-		// this.setState({ user: data.get('email') });
-		// localStorage.setItem('rememberMe', this.state.rememberMe);
-		// localStorage.setItem('user', this.state.rememberMe ? data.get('email') : '');
+		const { updateUser, rememberMe } = this.props
+		e.preventDefault()
+		const data = new FormData(e.target)
+		const localUser = data.get('email')
+		updateUser({ email: localUser })
+		localStorage.setItem('rememberMe', rememberMe)
+		localStorage.setItem('user', rememberMe ? localUser : '')
 	}
 
-	handleChange = event => {
-		// const input = event.target;
-		// const value = input.type === 'checkbox' ? input.checked : input.value;
-		// this.setState({ [input.name]: value });
+	handleChange = e => {
+		const { remeberUser } = this.props
+		const input = e.target
+		const value = input.type === 'checkbox' ? input.checked : input.value
+		remeberUser({ rememberMe: value })
 	}
 
 	forgotPswdHandler = e => {
-		// e.preventDefault();
-		// this.setState({ showLogin: false });
-		// this.setState({ showRecover: true });
-	}
-
-	recover = e => {
-		// e.preventDefault();
-		// this.setState({ showLogin: true });
-		// this.setState({ showRecover: false });
+		const { switchForm } = this.props
+		e.preventDefault()
+		switchForm({ showLogin: false, showRecover: true })
 	}
 
 	render() {
-		// const {showLogin, showRecover} = this.state;
+		const { email, rememberMe } = this.props
 		return (
 			<Box>
 				<Grid container>
@@ -72,13 +69,13 @@ let LoginInputs = class Login extends Component {
 							validate={[requiredInput, correctInput]}
 							type="text"
 							defaultValue=""
-							placeholder="email"
+							placeholder={email}
 						/>
 					</Label>
 					<Label>
 						<input
 							name="rememberMe"
-							checked=""
+							checked={rememberMe}
 							onChange={this.handleChange}
 							type="checkbox"
 						/>{' '}
@@ -124,4 +121,22 @@ const Login = reduxForm({
 	form: 'login',
 })(LoginInputs)
 
-export default Login
+const mapStateToProps = store => {
+	return {
+		email: store.login.email,
+		rememberMe: store.login.rememberMe,
+	}
+}
+
+const mapDispatchToProps = dispatch => {
+	return {
+		updateUser: user => dispatch(updateUser(user)),
+		remeberUser: flag => dispatch(remeberUser(flag)),
+		switchForm: data => dispatch(switchForm(data)),
+	}
+}
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Login)

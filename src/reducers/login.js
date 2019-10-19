@@ -1,18 +1,31 @@
-import { UPDATE_USER } from '../constants/action-types'
+import {
+	UPDATE_USER,
+	REMEMBER_USER,
+	SWITCH_FORM,
+} from '../constants/action-types'
 
 const initialState = {
-	user: '',
-	rememberMe: false,
+	email: '',
+	rememberMe: true,
 	showLogin: true,
 	showRecover: false,
 }
 
 export function loginReducer(state = initialState, action) {
-	if (action.type === UPDATE_USER) {
-		console.log('store, update user, email: ' + action.payload.email)
-		return Object.assign({}, state, {
-			email: action.payload.email,
-		})
+	console.log('loginReducer, action: ' + action.type + ' payload: ')
+	console.log(action.payload)
+	switch (action.type) {
+		case UPDATE_USER:
+			return { ...state, email: action.payload.email }
+		case REMEMBER_USER:
+			return { ...state, rememberMe: action.payload.rememberMe }
+		case SWITCH_FORM:
+			return {
+				...state,
+				showLogin: action.payload.showLogin,
+				showRecover: action.payload.showRecover,
+			}
+		default:
+			return state
 	}
-	return state
 }

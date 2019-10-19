@@ -19,7 +19,6 @@ let LoginForm = class LoginForm extends Component {
 }
 
 const mapStateToProps = store => {
-	console.log(store)
 	return {
 		showLogin: store.login.showLogin,
 		showRecover: store.login.showRecover,
