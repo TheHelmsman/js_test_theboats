@@ -1,10 +1,9 @@
 // src/js/actions/index.js
-import {
-	UPDATE_POS,
-	UPDATE_USER,
-	REMEMBER_USER,
-	SWITCH_FORM,
-} from '../constants/action-types'
+export const UPDATE_POS = 'UPDATE_POS'
+export const UPDATE_VIEWPORT = 'UPDATE_VIEWPORT'
+export const UPDATE_USER = 'UPDATE_USER'
+export const REMEMBER_USER = 'REMEMBER_USER'
+export const SWITCH_FORM = 'SWITCH_FORM'
 
 export function updatePosition(payload) {
 	return { type: UPDATE_POS, payload }

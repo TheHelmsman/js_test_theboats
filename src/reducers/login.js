@@ -1,8 +1,4 @@
-import {
-	UPDATE_USER,
-	REMEMBER_USER,
-	SWITCH_FORM,
-} from '../constants/action-types'
+import { UPDATE_USER, REMEMBER_USER, SWITCH_FORM } from '../actions'
 
 const initialState = {
 	email: '',

@@ -1,5 +1,4 @@
-import { UPDATE_POS } from '../constants/action-types'
-import { UPDATE_VIEWPORT } from '../constants/action-types'
+import { UPDATE_POS, UPDATE_VIEWPORT } from '../actions'
 import i18n from '../i18n'
 
 const initialState = {
